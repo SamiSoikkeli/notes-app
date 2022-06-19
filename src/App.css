@@ -1,38 +1,261 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css");
+
+* {
+  box-sizing: border-box;
+}
+
+/* THEMES */
+
+#light {
+  background-color: #fff;
+  color: #000;
+}
+
+#dark {
+  background-color: #111;
+  color: #fff;
+}
+
+/* GLOBAL STYLES */
+
+body,
 .App {
-  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  font-size: 16px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+button {
+  background: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  color: #08c;
+}
+button:hover {
+  color: #04c;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+}
+
+/* NAVBAR */
+
+.nav-container {
+  display: flex;
+  width: 100vw;
+  height: 7rem;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.nav-container h1 {
+  font-size: 2rem;
+}
+
+#dark .nav-container {
+  background-color: #111;
+  color: #FFF;
+  border-bottom: 1px solid #444;
+}
+
+.nav-theme-switch {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+
+.nav-theme-switch label {
+  margin-right: 0.5rem;
+}
+
+
+/* SIDEBAR STYLES */
+
+.app-sidebar {
+  width: 30%;
+  height: 100vh;
+  border-right: 1px solid #ddd;
+}
+
+#dark .app-sidebar {
+  border-right: 1px solid #444;
+}
+
+.app-sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px;
+}
+
+.app-sidebar-header h1 {
+  margin: 0;
+}
+
+.app-sidebar-notes {
+  height: calc(100vh - 12.5rem);
+  overflow-y: auto;
+}
+
+.app-sidebar-note {
+  padding: 25px;
+  cursor: pointer;
+}
+
+.sidebar-note-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.app-sidebar-note button {
+  color: crimson;
+}
+
+.app-sidebar-note p {
+  margin: 10px 0;
+}
+
+.app-sidebar-note small {
+  display: block;
+  color: #999;
+}
+
+.app-sidebar-note:hover {
+  background: #ddd;
+}
+
+#dark .app-sidebar-note:hover {
+  background: rgb(27, 27, 27);
+}
+
+.app-sidebar-note.active,
+.app-sidebar-note.active small {
+  background: #08c;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+#dark .app-sidebar-note.active,
+#dark .app-sidebar-note.active small {
+  background: rgb(27, 27, 27);
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* NOTE EDITOR/PREVIEW (MAIN) STYLES */
+
+.app-main {
+  width: 70%;
+  height: 100vh;
+}
+
+.app-main-note-edit,
+.app-main-note-preview {
+  height: 50vh;
+}
+
+.no-active-note {
+  width: 70%;
+  height: 100vh;
+  line-height: 100vh;
+  text-align: center;
+  font-size: 2rem;
+  color: #999;
+}
+
+#dark .no-active-note {
+  color: #fff
+}
+
+/* Editing */
+.app-main-note-edit {
+  padding: 25px;
+}
+
+.app-main-note-edit input,
+textarea {
+  display: block;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  width: 100%;
+  height: calc(50vh - 130px);
+  padding: 10px;
+  resize: none;
+  font-size: inherit;
+  font-family: inherit;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  color: #000;
+}
+
+#dark .app-main-note-edit input {
+  background-color: #111;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+#dark .app-main-note-edit textarea {
+  background-color: #111;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+.app-main-note-edit input {
+  height: 50px;
+  font-size: 2rem;
+}
+
+/* Preview */
+.app-main-note-preview {
+  border-top: 1px solid #ddd;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+#dark .app-main-note-preview {
+  border-top: 1px solid #444;
+}
+
+.preview-title {
+  padding: 25px 25px 0 25px;
+  margin: 0;
+}
+
+.markdown-preview {
+  padding: 0 25px 25px 25px;
+  font-size: 1rem;
+  line-height: 2rem;
+}
+
+
+/* Responsiveness */
+
+@media only screen and (max-width: 600px) {
+  .nav-container h1 {
+    font-size: 1.5rem;
   }
-  to {
-    transform: rotate(360deg);
+
+  .App {
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .app-sidebar {
+    height: 50vh;
+    width: 100vw;
+  }
+
+  .app-sidebar-notes {
+    max-height: 40vh;
+  }
+
+  .app-main {
+    width: 100vw;
   }
 }
